@@ -1,0 +1,31 @@
+<section class="form-container">
+    <div class="welcome-section">
+      <img src="assets/imgs/welcome-img.png" alt="" class="welcome-img">
+      <p class="welcome-title">welcome!</p>
+      <p class="welcome-description">discover your favourite item.</p>
+    </div>
+    <form class="login-form" action="" method="post" 
+    (submit)="register()"
+    #registerForm="ngForm">
+      <ul class="login-status">
+        <li class="login-statue">login</li>
+        <li class="login-statue">register</li>
+      </ul>
+      <div class="form-group">
+        <input type="email" class="form-input" placeholder="username" name="email" [(ngModel)]="user.email">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-input" placeholder="e-mail" name="username" [(ngModel)]="user.userName">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-input" id="password-input" placeholder="password"
+        name="password" [(ngModel)]="user.password"
+        >
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-input" id="password-input" placeholder="confirm-password">
+      </div>
+      <input value="register" type="submit" class="form-btn">
+    </form>
+
+  </section>
