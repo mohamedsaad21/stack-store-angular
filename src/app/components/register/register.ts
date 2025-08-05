@@ -29,6 +29,7 @@ export class Register {
     });
     if(this.isUserRegistered){
       this._router.navigateByUrl(`/Home`);
+      // this._router.navigate(['/Home']);
     }
   }
 }
