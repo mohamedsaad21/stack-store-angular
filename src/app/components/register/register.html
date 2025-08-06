@@ -4,7 +4,7 @@
       <p class="welcome-title">welcome!</p>
       <p class="welcome-description">discover your favourite item.</p>
     </div>
-    <form class="login-form" action="" method="post" 
+    <form class="login-form" action="" method="post"
     (submit)="register()"
     #registerForm="ngForm">
       <ul class="login-status">
@@ -52,7 +52,8 @@
         #PasswordInp="ngModel"
         required
         pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{6,}$"
-        name="password" [(ngModel)]="user.password"
+        name="password" 
+        [(ngModel)]="user.password"
         >
         @if(PasswordInp.invalid && PasswordInp.touched){
           <div class="validation">
@@ -67,24 +68,29 @@
         }
       </div>
       <div class="form-group">
-        <input type="password" class="form-input" id="password-input" placeholder="confirm-password"
+        <input type="password" class="form-input" id="password-input-confirm"
+        placeholder="confirm-password"
         #confirmInp="ngModel"
         [(ngModel)]="confirmPassword"
         name="confirmPassword"
         required
         >
+        
         @if(confirmInp.invalid && confirmInp.touched){
           <div class="validation">
             @if(confirmInp.errors?.['required']){
               <p>You must re-type password</p>
             }
-            @else{
+            @if(confirmInp.value != PasswordInp.value){
               <p>Password and confirm password do not match.</p>
             }
           </div>
         }
       </div>
       <!-- <input value="register" type="submit" class="form-btn"> -->
+      <div class="validation">
+        {{errorMessages}}
+      </div>
       <button type="submit" class="form-btn" 
       [disabled]="registerForm.invalid || (PasswordInp.value != confirmInp.value)">register</button>
     </form>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormGroup, FormsModule } from '@angular/forms';
 import { IUserRegister } from '../../models/iuser-register';
 import { UserAuth } from '../../services/user-auth';
 import { Router, RouterLink } from '@angular/router';
@@ -12,7 +12,8 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class Register {
   isUserRegistered:boolean;
-  confirmPassword!:string
+  confirmPassword!:string;
+  errorMessages!:string;
   user:IUserRegister = {} as IUserRegister;
   constructor(private _userAuthSer:UserAuth,
     private _router:Router,
@@ -29,7 +30,7 @@ export class Register {
           this._router.navigateByUrl(`/Home`);
         }
       },
-      error:(err)=>{console.log(err)}
+      error:(err)=>{this.errorMessages=err.error;console.log(err)}
     });
   }
 }

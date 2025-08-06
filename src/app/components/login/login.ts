@@ -12,6 +12,7 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class Login {
   isUserLogged:boolean;
+  errorMessages!:string
   user:IUserLogin = {} as IUserLogin;
   constructor(private _userAuthSer:UserAuth,
     private _router:Router
@@ -28,7 +29,7 @@ export class Login {
           this._router.navigateByUrl('/Home');
         }
       },
-      error:(err)=>{console.log(err)}
+      error:(err)=>{this.errorMessages = err.error;console.log(err)}
     });
   }
 
