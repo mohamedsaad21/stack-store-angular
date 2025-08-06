@@ -27,7 +27,12 @@ export class UserAuth {
   }
 
   getUserLogged():boolean{
-    return this._cookieService.check('refreshToken');
+    return this._cookieService.get('refreshToken')? true : false;
   }
+
+  logout(){
+    this._httpClient.post(`${environment.baseUrl}/api/Auth/revokeToken`,
+      this._cookieService.get('refreshToken'));
+    }
 
 }
