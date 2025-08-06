@@ -9,15 +9,36 @@
     #loginForm="ngForm">
       <ul class="login-status">
         <li class="login-statue">login</li>
-        <li class="login-statue">register</li>
+        <li class="login-statue" routerLink="/Register">register</li>
       </ul>
       <div class="form-group">
-        <input type="text" class="form-input" placeholder="e-mail" name="email" [(ngModel)]="user.email">
+        <input type="email" class="form-input" placeholder="e-mail" name="email" [(ngModel)]="user.email"
+        #emailInp="ngModel"
+        required
+        >
+        @if(emailInp.invalid && emailInp.touched){
+          <div class="validation">
+            @if(emailInp.errors?.['required']){
+              <p>email is required</p>
+            }
+          </div>
+        }
       </div>
       <div class="form-group">
-        <input type="text" class="form-input" id="password-input" placeholder="password" name="password" [(ngModel)]="user.password">
+        <input type="text" class="form-input" id="password-input" placeholder="password" name="password" 
+        [(ngModel)]="user.password"
+        #PasswordInp="ngModel"
+        required
+        >
+        @if(PasswordInp.invalid && PasswordInp.touched){
+          <div class="validation">
+            @if(PasswordInp.errors?.['required']){
+              <p>Password is required</p>
+          }
+          </div>
+        }
       </div>
-      <input value="login" type="submit" class="form-btn">
+      <button type="submit" class="form-btn" [disabled]="loginForm.invalid">login</button>
     </form>
 
   </section>
