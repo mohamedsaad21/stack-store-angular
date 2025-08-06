@@ -1,0 +1,23 @@
+<section class="container">
+    <div class="categories-nav">
+        <ul class="categories-list" id="categories-list">
+            <li class="category-item" (click)="filterProducts()">All</li>
+            @for(category of categories; track category.id){
+
+            <li class="category-item" (click)="filterProducts(category.id)">{{category.name}}</li>
+            }
+        </ul>
+    </div>
+    <section class="menu-container" id="menu-container">
+        @for (product of filteredProducts; track product.id) {
+
+        <div class="item-card" data-aos="fade-down">
+            <img [src]="product.images[0]" alt="{{ product.name }}" class="item-image" loading="lazy">
+            <p class="item-name">{{product.name}}</p>
+            <p>{{ product.description }}</p>
+            <p class="item-price">{{product.price | currency}}</p>
+            <p class="item-price">In Stock: {{product.stock}}</p>
+        </div>
+        }
+    </section>
+</section>
