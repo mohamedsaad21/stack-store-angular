@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { UserAuth } from '../../services/user-auth';
 import { FormsModule } from '@angular/forms';
 import { IUserLogin } from '../../models/iuser-login';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
@@ -22,12 +22,14 @@ export class Login {
 
   login(){
     this._userAuthSer.login(this.user).subscribe({
-      next:(res)=>{this.isUserLogged = res.isAuthenticated},
+      next:(res)=>{
+        this.isUserLogged = res.isAuthenticated;
+        if(this.isUserLogged){
+          this._router.navigateByUrl('/Home');
+        }
+      },
       error:(err)=>{console.log(err)}
     });
-    if(this.isUserLogged){
-      this._router.navigateByUrl('/Home');
-    }
   }
 
 

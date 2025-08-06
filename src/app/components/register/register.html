@@ -8,24 +8,85 @@
     (submit)="register()"
     #registerForm="ngForm">
       <ul class="login-status">
-        <li class="login-statue">login</li>
+        <li class="login-statue" routerLink="/Login">login</li>
         <li class="login-statue">register</li>
       </ul>
       <div class="form-group">
-        <input type="email" class="form-input" placeholder="username" name="email" [(ngModel)]="user.email">
+        <input type="text" class="form-input" 
+        #usernameInp="ngModel"
+        placeholder="username" name="username" [(ngModel)]="user.userName"
+        required
+        pattern="^[a-zA-Z0-9_]{3,16}$"
+        >
+        @if(usernameInp.invalid && usernameInp.touched){
+          <div class="validation">
+            @if(usernameInp.errors?.['required']){
+              <p>Username is required</p> 
+            } 
+            @if(usernameInp.errors?.['pattern']){
+              <p>Username is invalid</p> 
+            }         
+          </div>
+        }
       </div>
       <div class="form-group">
-        <input type="text" class="form-input" placeholder="e-mail" name="username" [(ngModel)]="user.userName">
+        <input type="email" class="form-input" placeholder="e-mail" 
+        name="email" [(ngModel)]="user.email"
+        required
+        pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$"
+        #emailInp="ngModel"
+        >
+        @if(emailInp.invalid && emailInp.touched){
+          <div class="validation">
+            @if(emailInp.errors?.['required']){
+              <p>email is required</p>
+            }
+            @if(emailInp.errors?.['pattern']){
+              <p>email is invalid</p>
+            }
+          </div>
+        }
       </div>
       <div class="form-group">
         <input type="password" class="form-input" id="password-input" placeholder="password"
+        #PasswordInp="ngModel"
+        required
+        pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{6,}$"
         name="password" [(ngModel)]="user.password"
         >
+        @if(PasswordInp.invalid && PasswordInp.touched){
+          <div class="validation">
+            @if(PasswordInp.errors?.['required']){
+              <p>Password is required</p>
+            }
+            @if(PasswordInp.errors?.['pattern']){
+              <p>Password is invalid</p>
+            }
+            
+          </div>
+        }
       </div>
       <div class="form-group">
-        <input type="password" class="form-input" id="password-input" placeholder="confirm-password">
+        <input type="password" class="form-input" id="password-input" placeholder="confirm-password"
+        #confirmInp="ngModel"
+        [(ngModel)]="confirmPassword"
+        name="confirmPassword"
+        required
+        >
+        @if(confirmInp.invalid && confirmInp.touched){
+          <div class="validation">
+            @if(confirmInp.errors?.['required']){
+              <p>You must re-type password</p>
+            }
+            @else{
+              <p>Password and confirm password do not match.</p>
+            }
+          </div>
+        }
       </div>
-      <input value="register" type="submit" class="form-btn">
+      <!-- <input value="register" type="submit" class="form-btn"> -->
+      <button type="submit" class="form-btn" 
+      [disabled]="registerForm.invalid || (PasswordInp.value != confirmInp.value)">register</button>
     </form>
 
   </section>
