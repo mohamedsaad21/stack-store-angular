@@ -9,8 +9,10 @@ import { ApiResponse } from '../models/api-response';
   providedIn: 'root'
 })
 export class Fetchproducts {
-
-  constructor(private _HttpClient: HttpClient) { }
+  token:string|null;
+  constructor(private _HttpClient: HttpClient) { 
+    this.token = localStorage.getItem('JWT_TOKEN');
+  }
 
   getAllProducts(pageNum: number, pageSize: number): Observable<ApiResponse> {
     return this._HttpClient.get<ApiResponse>(`${environment.baseUrl}/api/v1/Product?pageSize=${pageSize}&pageNumber=${pageNum}`);
@@ -25,7 +27,22 @@ export class Fetchproducts {
   }
 
   addProduct(product: Iproduct): Observable<ApiResponse> {
-    return this._HttpClient.post<ApiResponse>(`${environment.baseUrl}/api/v1/Product`, product);
+    const formData = new FormData();
+    formData.append('name', product.name);
+    formData.append('description', product.description);
+    formData.append('price', product.price.toString());
+    formData.append('stock', product.stock.toString());
+    formData.append('categoryid', product.categoryId.toString());
+   
+    
+    product.images.forEach(img => {
+      formData.append('images', img);
+    })
+    return this._HttpClient.post<ApiResponse>(`${environment.baseUrl}/api/v1/Product`, formData, {
+      headers:{
+        Authorization: `Bearer ${this.token}`
+      }
+    });
   }
 
   updateProduct(id: number, product: Iproduct): Observable<ApiResponse> {

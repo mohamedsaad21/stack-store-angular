@@ -4,6 +4,6 @@ export interface Iproduct {
     description:string,
     price:number,
     stock:number,
-    images:string [],
+    images:File[],
     categoryId:number
 }
