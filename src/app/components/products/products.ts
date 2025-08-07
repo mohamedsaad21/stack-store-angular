@@ -5,6 +5,9 @@ import { CommonModule } from '@angular/common';
 import * as AOS from 'aos';
 import { Fetchcategories } from '../../services/fetchcategories';
 import { Icategory } from '../../models/icategory';
+import Swal from 'sweetalert2';
+import { Cartitem } from '../../models/cartitem';
+import { Fetchcart } from '../../services/fetchcart';
 
 @Component({
   selector: 'app-products',
@@ -17,9 +20,14 @@ export class Products implements OnInit {
   products: Iproduct[] = [];
   categories: Icategory[] = [];
   filteredProducts: Iproduct[] = [];
+  cartItem: Cartitem = {
+    productId:1,
+    count:1
+  };
   constructor(
     private _Fetchproducts: Fetchproducts,
-    private _Fetchcategories: Fetchcategories
+    private _Fetchcategories: Fetchcategories,
+    private _Fetchcart:Fetchcart
   ) { }
   ngOnInit() {
     this.getProducts();
@@ -46,9 +54,17 @@ export class Products implements OnInit {
   }
 
   filterProducts(catId?: number) {
-    if(!catId){
+    if (!catId) {
       this.getProducts();
     }
     this.filteredProducts = this.products.filter(prd => prd.categoryId == catId);
+  }
+
+  addToCart(Id:number) {
+    this._Fetchcart.addProductToCart(this.cartItem).subscribe({
+      next: (res) => {
+        console.log(res);
+      }
+    })
   }
 }
