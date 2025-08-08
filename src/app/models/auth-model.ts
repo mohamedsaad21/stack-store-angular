@@ -3,7 +3,7 @@ export interface AuthModel {
   isAuthenticated: boolean,
   email: string;
   username: string;
-  roles: [],
+  roles: string[],
   token: string;
   expiresOn: string;
   refreshTokenExpiration: string;

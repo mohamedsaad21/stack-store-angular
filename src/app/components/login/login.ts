@@ -25,6 +25,7 @@ export class Login {
     this._userAuthSer.login(this.user).subscribe({
       next:(res)=>{
         this.isUserLogged = res.isAuthenticated;
+        this._userAuthSer.user = res;
         if(this.isUserLogged){
           this._router.navigateByUrl('/Home');
         }

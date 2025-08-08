@@ -32,12 +32,12 @@ export class Fetchproducts {
     formData.append('description', product.description);
     formData.append('price', product.price.toString());
     formData.append('stock', product.stock.toString());
-    formData.append('categoryid', product.categoryId.toString());
-   
-    
-    product.images.forEach(img => {
-      formData.append('images', img);
-    })
+    formData.append('categoryid', product.categoryId.toString());    
+    if(product.images){
+      product.images.forEach(img => {
+        formData.append('images', img);
+      });
+    };
     return this._HttpClient.post<ApiResponse>(`${environment.baseUrl}/api/v1/Product`, formData, {
       headers:{
         Authorization: `Bearer ${this.token}`

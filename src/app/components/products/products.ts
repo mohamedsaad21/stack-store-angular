@@ -20,10 +20,7 @@ export class Products implements OnInit {
   products: Iproduct[] = [];
   categories: Icategory[] = [];
   filteredProducts: Iproduct[] = [];
-  cartItem: Cartitem = {
-    productId:1,
-    count:1
-  };
+  cartItem: Cartitem = {} as Cartitem;
   constructor(
     private _Fetchproducts: Fetchproducts,
     private _Fetchcategories: Fetchcategories,
@@ -61,6 +58,7 @@ export class Products implements OnInit {
   }
 
   addToCart(Id:number) {
+    this.cartItem.productId = Id;
     this._Fetchcart.addProductToCart(this.cartItem).subscribe({
       next: (res) => {
         console.log(res);

@@ -5,32 +5,31 @@ import { IUserRegister } from '../models/iuser-register';
 import { IUserLogin } from '../models/iuser-login';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { AuthModel } from '../models/auth-model';
-import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserAuth {
+  user!:AuthModel
   private readonly JWT_TOKEN = 'JWT_TOKEN';
   private loggedUser?:string;
-  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
-  constructor(private _httpClient:HttpClient,
-    private _cookieService:CookieService
-  ){
-
+  private authSubject:BehaviorSubject<boolean>;
+  constructor(private _httpClient:HttpClient){
+    this.authSubject = new BehaviorSubject<boolean>(this.getUserLogged());
   }
 
   register(user:IUserRegister):Observable<AuthModel>{
-    return this._httpClient.post<AuthModel>(`${environment.baseUrl}/api/Auth/register`, user);
+    return this._httpClient.post<AuthModel>(`${environment.baseUrl}/api/Auth/register`, user)
+    .pipe(tap((response:AuthModel) => {this.doLoginUser(user.email, response.token)}));
   }
 
   login(user:IUserLogin):Observable<AuthModel>{
     return this._httpClient.post<AuthModel>(`${environment.baseUrl}/api/Auth/login`, user)
-    .pipe(tap((response:AuthModel) => this.doLoginUser(user.email, response.token)));
+    .pipe(tap((response:AuthModel) => {this.doLoginUser(user.email, response.token)}));
   }
 
   getUserLogged():boolean{
-    return this._cookieService.get('refreshToken')? true : false;
+    return localStorage.getItem(this.JWT_TOKEN)? true : false;
   }
 
   
@@ -38,7 +37,7 @@ export class UserAuth {
     private doLoginUser(email:string, token:any){
       this.loggedUser = email;
       this.storeJwtToken(token);
-      this.isAuthenticatedSubject.next(true);
+      this.authSubject.next(true);
     }
     private storeJwtToken(jwt:string){
       localStorage.setItem(this.JWT_TOKEN, jwt);
@@ -46,6 +45,10 @@ export class UserAuth {
 
     logout(){
       localStorage.removeItem(this.JWT_TOKEN);
-      this.isAuthenticatedSubject.next(false);
+      this.authSubject.next(false);
+    }
+
+    getAuthSubject():BehaviorSubject<boolean>{
+      return this.authSubject;
     }
 }
