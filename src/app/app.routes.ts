@@ -6,6 +6,7 @@ import { Products } from './components/products/products';
 import { NotFound } from './components/not-found/not-found';
 import { AddProduct } from './components/add-product/add-product';
 import { Cart } from './components/cart/cart';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
     {path:'', redirectTo:'/Home', pathMatch:'full'},
