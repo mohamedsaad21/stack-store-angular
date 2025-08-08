@@ -1,0 +1,37 @@
+ <header>
+    <div class="logo">
+      <span class="brand-Name">Stack Store</span>
+    </div>
+    <i class="ri-menu-line toggle-Icon" id="toggle-Icon"></i>
+    <nav class="navBar" id="navBar">
+      <ul class="nav-list">
+        <a routerLink="/Home">
+          <li class="nav-items">Home</li>
+        </a>
+        <a routerLink="/Products">
+          <li class="nav-items">Products</li>
+        </a>
+        <a routerLink="/Cart">
+          <li class="nav-items">Cart</li>
+        </a>
+                
+        <a routerLink="/AddProduct">
+          <li class="nav-items">Add Product</li>
+        </a>
+        @if(!isUserLogged){
+          <a routerLink="/Register">
+            <li class="nav-items">Register</li>
+        </a>
+        }
+        @if(isUserLogged){
+          <a href="#">
+            <button class="log-out__btn" (click)="logout()">log-out</button>
+          </a>
+        }@else{
+          <a routerLink="/Login">
+            <button class="log-out__btn">Login</button>
+          </a>
+        }
+      </ul>
+    </nav>
+  </header>

@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/* global style , for the styles.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Work Sans", sans-serif;
+  text-transform: capitalize;
+}
+
+.toggle-Icon {
+  display: none;
+  transition: .4s ease;
+  color: #000;
+
+  &:hover {
+    color: #ee6b4d;
+  }
+}
+
+.nav-toggle {
+  display: block !important;
+}
+
+
+
+header {
+  background-color: #fff;
+  color: #000;
+  display: flex;
+  text-transform: capitalize;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  .logo {
+    cursor: pointer;
+    transition: .4s ease;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ee6b4d;
+
+    &:hover {
+      scale: 1.01;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+
+
+  .nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    align-items: center;
+
+    a {
+      color: #000;
+      text-decoration: none;
+    }
+
+    .nav-items {
+      cursor: pointer;
+      transition: .4s ease;
+      position: relative;
+      padding: .25rem 0;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 1px;
+        border-radius: 2px;
+        width: 0;
+        background-color: #ee6b4d;
+        transition: .4s ease;
+      }
+
+      &:hover {
+        &::after {
+
+          width: 100%;
+        }
+
+        color: #ee6b4d;
+      }
+    }
+
+    .log-out__btn {
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      outline: none;
+      border: none;
+      background-color: #ff7f62;
+      color: #f8f8f8;
+      cursor: pointer;
+      transition: .4s ease;
+
+      &:hover {
+        background-color: #ee6b4d;
+        letter-spacing: 1.05px;
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+
+    .toggle-Icon {
+      display: block;
+
+    }
+
+    .navBar {
+      padding: 1rem;
+      position: absolute;
+      top: 65px;
+      left: 0;
+      width: 100%;
+      height: auto;
+      background-color: #f8f8f8;
+      display: none;
+      transition: .4s ease;
+
+      .nav-list {
+        flex-direction: column;
+        align-items: center;
+
+
+      }
+    }
+  }
+}
