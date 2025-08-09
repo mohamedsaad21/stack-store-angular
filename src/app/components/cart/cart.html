@@ -1,22 +1,30 @@
-    <div class="cart-container">
-        <div class="products-container">
-            <h1 class="products-header">Shopping Cart</h1>
-            <div class="cart-product">
-                <div class="cart-product__card">
-                    <img class="cart-product__img" src="download (1).jpg" alt="photo">
-                    <div class="cart-product_details">
-                        <p class="cart-product__name">T-Shirt</p>
-                        <p class="cart-product__price">$29.99</p>
-                    </div>
+<div class="cart-container">
+    <div class="products-container">
+        <h1 class="products-header">Shopping Cart</h1>
+        @for(item of cartItems ; track item.productId){
+        <div class="cart-product">
+            <div class="cart-product__card">
+                <img class="cart-product__img" [src]="item.imageUrl" alt="photo" width="100">
+                <div class="cart-product_details">
+                    <p class="cart-product__name">{{item.productName}}</p>
+                    <p class="cart-product__price">{{item.unitPrice|currency}}</p>
                 </div>
-                <i class="cart-product__delete ri-delete-bin-5-line"></i>
-            </div>    
-        </div>
-        <div class="checkout-container">
-            <div class="checkout-total_price">
-                <p class="checkout-pragraph">Total</p>
-                <p class="checkout-pragraph">$99.97</p>
             </div>
-            <button class="checkout-btn">Proceed to checkout</button>
+            <div class="quantity-container">
+                <!-- <i class="cart-product__delete ri-subtract-fill" (click)="decrease(item.id!)"></i> -->
+                <!-- <p>{{item.quantity}}</p> -->
+                <!-- <i class="cart-product__delete ri-add-fill" (click)="increase(item.id!)"></i> -->
+                <i class="cart-product__delete ri-delete-bin-5-line" (click)="deleteFromCart(item.id)">
+                </i>
+            </div>
         </div>
+        }
     </div>
+    <div class="checkout-container">
+        <div class="checkout-total_price">
+            <p class="checkout-pragraph">Total</p>
+            <p class="checkout-pragraph">{{getTotalPrice() | currency}}</p>
+        </div>
+        <button class="checkout-btn">Proceed to checkout</button>
+    </div>
+</div>
