@@ -7,6 +7,7 @@ import { NotFound } from './components/not-found/not-found';
 import { AddProduct } from './components/add-product/add-product';
 import { Cart } from './components/cart/cart';
 import { authGuard } from './guards/auth-guard';
+import { UpdateProduct } from './components/update-product/update-product';
 import { Details } from './components/details/details';
 
 export const routes: Routes = [
@@ -16,6 +17,7 @@ export const routes: Routes = [
     {path:'Register', component:Register},
     {path:'Products', component:Products},
     {path:'AddProduct', component:AddProduct},
+    {path:'UpdateProduct/:id', component:UpdateProduct},
     {path:'Cart', component:Cart},
     {path:'Details/:id', component:Details},
     {path:'**', component:NotFound}
