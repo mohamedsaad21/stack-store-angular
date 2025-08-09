@@ -6,13 +6,14 @@ import * as AOS from 'aos';
 import { Fetchcategories } from '../../services/fetchcategories';
 import { Icategory } from '../../models/icategory';
 import Swal from 'sweetalert2';
-import { Cartitem } from '../../models/cartitem';
 import { Fetchcart } from '../../services/fetchcart';
 import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+    
 
 @Component({
   selector: 'app-products',
-  imports: [CommonModule],
+  imports: [CommonModule,RouterLink],
   templateUrl: './products.html',
   styleUrl: './products.css'
 })
@@ -21,12 +22,13 @@ export class Products implements OnInit {
   products: Iproduct[] = [];
   categories: Icategory[] = [];
   filteredProducts: Iproduct[] = [];
-  cartItem: Cartitem = {} as Cartitem;
   constructor(
     private _Fetchproducts: Fetchproducts,
     private _Fetchcategories: Fetchcategories,
     private _Fetchcart:Fetchcart,
     private _router:Router
+    private _Fetchcart: Fetchcart,
+    private _Router:Router
   ) { }
   ngOnInit() {
     this.getProducts();
@@ -59,6 +61,7 @@ export class Products implements OnInit {
     this.filteredProducts = this.products.filter(prd => prd.categoryId == catId);
   }
 
+
   addToCart(Id:number) {
     this.cartItem.productId = Id;
     this._Fetchcart.addProductToCart(this.cartItem).subscribe({
@@ -78,4 +81,8 @@ export class Products implements OnInit {
       }
     })
   }
+
+
+
+
 }

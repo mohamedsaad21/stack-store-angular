@@ -7,7 +7,7 @@
 }
 
 .cart-container {
-    height: 100vh;
+    min-height: 100vh;
     background-color: #e7e7e7;
     display: flex;
     justify-content: space-between;
@@ -75,6 +75,8 @@
         }
     }
 
+   
+
     .checkout-container {
         flex: 1;
         background-color: white;
@@ -131,3 +133,10 @@
     }
 
 }
+
+
+ .quantity-container{
+        display: flex;
+        justify-content: space-between;
+        align-items:center;
+    }

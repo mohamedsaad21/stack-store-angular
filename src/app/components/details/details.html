@@ -1,0 +1,24 @@
+<section class="page-container">
+    <div class="product-container">
+
+        <img class="main-img" [src]="product.images[0]" alt="photo">
+        <div class="alternative-imgs">
+        <img *ngFor="let img of product.images" class="alternative-img" [src]="img" alt="product.name">
+        </div>
+    </div>
+    <div class="details-container">
+        <p class="bold-details">{{product.name}}</p>
+        <div class="stars">
+            <i class="rate ri-star-s-fill"></i>
+            <i class="rate ri-star-s-fill"></i>
+            <i class="rate ri-star-s-fill"></i>
+            <i class="rate ri-star-s-fill"></i>
+            <i class="rate ri-star-half-s-line"></i>
+        </div>
+        <p class="bold-details">{{product.price | currency}}</p>
+        <p class="bold-details">Stock: {{product.stock}}</p>
+
+        <p class="details">{{product.description}}</p>
+        <button class="details-btn" (click)="addToCart(product)">Add to Cart</button>
+    </div>
+</section>

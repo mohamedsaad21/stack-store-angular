@@ -13,3 +13,4 @@ import { UpdateProduct } from "./components/update-product/update-product";
 export class App {
   protected readonly title = signal('StackStore');
 }
+

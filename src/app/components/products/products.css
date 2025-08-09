@@ -146,17 +146,17 @@ body {
 
 /* Temporary button until cart added */
 button {
-  padding:10px;
-  background-color: #2ecc71;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      outline: none;
+      border: none;
+      background-color: #ff7f62;
+      color: #f8f8f8;
+      cursor: pointer;
+      transition: .4s ease;
 }
 
 button:hover {
-  background-color: #27ae60;
-  transform: translateY(-2px);
+        background-color: #ee6b4d;
 }
 

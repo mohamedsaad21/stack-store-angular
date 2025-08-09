@@ -25,7 +25,9 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css",
+              "https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
             ]
           },
           "configurations": {
