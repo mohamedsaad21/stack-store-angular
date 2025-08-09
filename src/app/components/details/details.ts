@@ -98,13 +98,42 @@ addToCart(product: Iproduct) {
     this._Router.navigateByUrl(`/UpdateProduct/${id}`);
   }
 
-  deletePrd(id:number){
-    this._Fetchproducts.deleteProduct(id).subscribe({
-      next:(res)=>{this._Router.navigateByUrl(`/Products`)},
-      error:(err)=>{console.log(err);
-      }
-    })
-  }
+deletePrd(id: number) {
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'This product will be deleted permanently!',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6',
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'Cancel'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this._Fetchproducts.deleteProduct(id).subscribe({
+        next: (res) => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Deleted!',
+            text: 'The product has been deleted successfully.',
+            showConfirmButton: false,
+            timer: 1500
+          });
+          this._Router.navigateByUrl(`/Products`);
+        },
+        error: (err) => {
+          console.error(err);
+          Swal.fire({
+            icon: 'error',
+            title: 'Failed!',
+            text: 'Something went wrong while deleting the product.'
+          });
+        }
+      });
+    }
+  });
+}
+
 
 }
 
