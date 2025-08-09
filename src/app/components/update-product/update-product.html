@@ -1,0 +1,144 @@
+<div class="add-product-form">
+  <h2>Update Product</h2>
+
+  <form (submit)="UpdatePrd()" #updatePrdForm="ngForm">
+    <label>
+      Product Name *
+      <input
+        type="text"
+        placeholder="e.g. Handmade Wooden Chair"
+        name="name"
+        id="name"
+        [value]="product.name"
+        name="name"
+        [(ngModel)]="product.name"
+        required
+        #nameInp="ngModel"
+      />
+      @if(nameInp.invalid && nameInp.touched){
+      <div class="validation">
+        @if(nameInp.errors?.['required']){
+        <p>Name is required</p>
+        }
+      </div>
+      }
+    </label>
+
+    <div class="row">
+      <label>
+        Price *
+        <input
+          type="number"
+          placeholder="e.g. 150.00"
+          name="price"
+          id="price"
+          [value]="product.price"
+          [(ngModel)]="product.price"
+          name="price"
+          #priceInp="ngModel"
+          required
+          min="0.01"
+        />
+        @if(priceInp.invalid && priceInp.touched){
+        <div class="validation">
+          @if(priceInp.errors?.['required']){
+          <p>Price is required</p>
+          } @if(priceInp.errors?.['min']){
+          <p>Price must be positive</p>
+          }
+        </div>
+        }
+      </label>
+      <label for="category">
+        Category *
+        <select
+          id="category"
+          [(ngModel)]="product.categoryId"
+          name="categoryId"
+          #catInp="ngModel"
+        >
+          <option value="0" selected disabled>-- Select Category --</option>
+          @for(cat of categories; track cat.id){
+            @if(product.categoryId == cat.id){
+              <option [value]="cat.id" selected>{{ cat.name }}</option>
+            }@else {
+              <option [value]="cat.id">{{ cat.name }}</option>
+            }
+          }
+        </select>
+        @if(catInp.touched){
+        <div class="validation">
+          @if(catInp.value == 0){
+          <p>You must select category</p>
+          }
+        </div>
+        }
+      </label>
+    </div>
+
+    <label>
+      Description
+      <textarea
+        placeholder="Share more details about your product..."
+        name="description"
+        [(ngModel)]="product.description"
+        name="description"
+        [value]="product.description"
+        #descInp="ngModel"
+        required
+      ></textarea>
+      @if(descInp.invalid && descInp.touched){
+      <div class="validation">
+        @if(descInp.errors?.['required']){
+        <p>Description is required</p>
+        }
+      </div>
+      }
+    </label>
+
+    <label for="images">
+      Product Photo
+      <input
+        type="file"
+        multiple
+        name="images"
+        id="images"
+        multiple
+        (change)="onImagesSelected($event)"
+      />
+    </label>
+
+    <label>
+      Stock *
+      <input
+        type="number"
+        placeholder="e.g. 25"
+        name="stock"
+        id="stock"
+        [value]="product.stock"
+        [(ngModel)]="product.stock"
+        name="stock"
+        #stockInp="ngModel"
+        required
+        min="1"
+      />
+      @if(stockInp.invalid && stockInp.touched){
+      <div class="validation">
+        @if(stockInp.errors?.['required']){
+        <p>Stock is required</p>
+        } @if(stockInp.errors?.['min']){
+        <p>Stock must be positive</p>
+        }
+      </div>
+      }
+    </label>
+
+    <button
+      type="submit"
+      class="add-button"
+      [disabled]="updatePrdForm.invalid || catInp.value == 0"
+    >
+      Update
+    </button>
+  </form>
+</div>

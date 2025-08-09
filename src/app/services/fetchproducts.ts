@@ -46,11 +46,19 @@ export class Fetchproducts {
   }
 
   updateProduct(id: number, product: Iproduct): Observable<ApiResponse> {
-    return this._HttpClient.put<ApiResponse>(`${environment.baseUrl}/api/v1/Product/${id}`, product);
+    return this._HttpClient.put<ApiResponse>(`${environment.baseUrl}/api/v1/Product/${id}`, product, {
+      headers:{
+        Authorization: `Bearer ${this.token}`
+      }
+    });
   }
 
   deleteProduct(id: number): Observable<ApiResponse> {
-    return this._HttpClient.delete<ApiResponse>(`${environment.baseUrl}/api/v1/Product/${id}`);
+    return this._HttpClient.delete<ApiResponse>(`${environment.baseUrl}/api/v1/Product/${id}`, {
+      headers:{
+        Authorization: `Bearer ${this.token}`
+      }
+    });
   }
 
 }

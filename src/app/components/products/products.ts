@@ -8,6 +8,7 @@ import { Icategory } from '../../models/icategory';
 import Swal from 'sweetalert2';
 import { Cartitem } from '../../models/cartitem';
 import { Fetchcart } from '../../services/fetchcart';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -24,7 +25,8 @@ export class Products implements OnInit {
   constructor(
     private _Fetchproducts: Fetchproducts,
     private _Fetchcategories: Fetchcategories,
-    private _Fetchcart:Fetchcart
+    private _Fetchcart:Fetchcart,
+    private _router:Router
   ) { }
   ngOnInit() {
     this.getProducts();
@@ -33,7 +35,7 @@ export class Products implements OnInit {
   }
 
   getProducts() {
-    this._Fetchproducts.getAllProducts(1, 7).subscribe({
+    this._Fetchproducts.getAllProducts(1, 10).subscribe({
       next: (res) => {
         this.products = res.result;
         this.filteredProducts = res.result;
@@ -62,6 +64,17 @@ export class Products implements OnInit {
     this._Fetchcart.addProductToCart(this.cartItem).subscribe({
       next: (res) => {
         console.log(res);
+      }
+    })
+  }
+  navigateToUpdate(id:number){
+    this._router.navigateByUrl(`/UpdateProduct/${id}`);
+  }
+
+  deletePrd(id:number){
+    this._Fetchproducts.deleteProduct(id).subscribe({
+      next:(res)=>{this.filteredProducts = this.filteredProducts.filter(p => p.id != id)},
+      error:(err)=>{console.log(err);
       }
     })
   }
