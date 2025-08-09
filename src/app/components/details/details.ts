@@ -90,8 +90,21 @@ addToCart(product: Iproduct) {
     error: (err) => console.error('Error fetching cart:', err)
   });
 
+
+  
  
 }
+  navigateToUpdate(id:number){
+    this._Router.navigateByUrl(`/UpdateProduct/${id}`);
+  }
 
+  deletePrd(id:number){
+    this._Fetchproducts.deleteProduct(id).subscribe({
+      next:(res)=>{this._Router.navigateByUrl(`/Products`)},
+      error:(err)=>{console.log(err);
+      }
+    })
+  }
 
 }
+

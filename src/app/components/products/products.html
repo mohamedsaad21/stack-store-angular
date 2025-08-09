@@ -16,10 +16,7 @@
             <p class="item-name">{{product.name}}</p>
             <p>{{ product.description }}</p>
             <p class="item-price">{{product.price | currency}}</p>
-            <p class="item-price">In Stock: {{product.stock}}</p>
-            <button (click)="addToCart(product.id)">Add TO Cart</button>
-            <button (click)="navigateToUpdate(product.id)">Update</button>
-            <button (click)="deletePrd(product.id)">Delete</button>
+
             <button [routerLink]="['/Details',product.id]">Details</button>
         </div>
         }

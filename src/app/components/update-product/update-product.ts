@@ -45,7 +45,7 @@ export class UpdateProduct {
     this._productSer.updateProduct(this.product.id, this.product).subscribe({
       next:(res)=>{
         if(res.isSuccess){
-          this._router.navigateByUrl(`/Products`);
+          this._router.navigateByUrl(`/Details/${this.product.id}`);
         }
       },
       error:(err)=>{console.log(err)}
