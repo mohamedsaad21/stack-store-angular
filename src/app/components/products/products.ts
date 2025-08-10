@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import * as AOS from 'aos';
 import { Fetchcategories } from '../../services/fetchcategories';
 import { Icategory } from '../../models/icategory';
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
 import { Fetchcart } from '../../services/fetchcart';
 import { Router, RouterLink } from '@angular/router';
     
