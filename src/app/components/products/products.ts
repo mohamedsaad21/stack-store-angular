@@ -29,12 +29,12 @@ export class Products implements OnInit {
   ) { }
   ngOnInit() {
     this.getProducts();
-    this.getCategories();
+    this.getCategories(); 
     AOS.init();
   }
 
   getProducts() {
-    this._Fetchproducts.getAllProducts(1, 10).subscribe({
+    this._Fetchproducts.getAllProducts(1, 20).subscribe({
       next: (res) => {
         this.products = res.result;
         this.filteredProducts = res.result;

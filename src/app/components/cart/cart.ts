@@ -100,3 +100,4 @@ export class Cart implements OnInit {
     return total;
   }
 
+}
