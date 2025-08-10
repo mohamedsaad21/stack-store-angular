@@ -1,9 +1,12 @@
 import { inject } from '@angular/core';
-import { CanActivateFn } from '@angular/router';
-import { UserAuth } from '../services/user-auth';
+import { CanActivateFn, Router } from '@angular/router';
+import { AuthState } from '../store/role.reducer';
+import { Store } from '@ngrx/store';
+import { selectRoles } from '../store/role.selector';
+import { map } from 'rxjs';
 
 export const authGuard: CanActivateFn = (route, state) => {
-  let _userAuthSer = inject(UserAuth);
-  console.log(_userAuthSer.user);
-  return _userAuthSer.user.roles.includes('Admin');
+  let router = inject(Router);
+  let store = inject(Store<{auth:AuthState}>);
+  return store.select(selectRoles).pipe(map(roles => roles.includes('Admin')));
 };

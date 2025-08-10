@@ -6,6 +6,11 @@ import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import { Fetchcart } from '../../services/fetchcart';
 import { Cartitem } from '../../models/cartitem';
+import { UserAuth } from '../../services/user-auth';
+import { Observable } from 'rxjs';
+import { selectRoles } from '../../store/role.selector';
+import { AuthState } from '../../store/role.reducer';
+import { Store } from '@ngrx/store';
 @Component({
   selector: 'app-details',
   imports: [CommonModule],
@@ -14,6 +19,9 @@ import { Cartitem } from '../../models/cartitem';
 })
 export class Details implements OnInit {
 
+  Roles$!:Observable<string[]>
+  roles:string[] = [] as string[]
+    
   product: Iproduct = {} as Iproduct;
   productId:number = 0;
 
@@ -21,11 +29,18 @@ export class Details implements OnInit {
     private _Fetchproducts: Fetchproducts,
     private _Fetchcart:Fetchcart,
     private _ActivatedRoute: ActivatedRoute,
-    private _Router:Router
+    private _Router:Router,
+    private _userAuthSer:UserAuth,
+    private store:Store<{auth:AuthState}>
   ) { }
 
   ngOnInit() {
-     this.productId = Number(this._ActivatedRoute.snapshot.paramMap.get('id'));
+    this.Roles$ = this.store.select(selectRoles);
+        this.Roles$.subscribe(val => {
+          this.roles = val
+        });
+
+    this.productId = Number(this._ActivatedRoute.snapshot.paramMap.get('id'));
 
     if (this.productId) {
       this._Fetchproducts.getProductById(this.productId).subscribe({

@@ -4,6 +4,7 @@ import { Cartitem } from '../../models/cartitem';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import { DeleteItem } from '../../models/delete-item';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -15,7 +16,9 @@ export class Cart implements OnInit {
   cartItems: DeleteItem[] = [];
   prices: number[] = [];
 
-  constructor(private _Fetchcart: Fetchcart) {
+  constructor(private _Fetchcart: Fetchcart,
+    private _router:Router
+  ) {
 
   }
 
@@ -97,4 +100,3 @@ export class Cart implements OnInit {
     return total;
   }
 
-}   
