@@ -12,6 +12,7 @@ import { selectRoles } from '../../store/role.selector';
 import { AuthState } from '../../store/role.reducer';
 import { Store } from '@ngrx/store';
 @Component({
+  // 
   selector: 'app-details',
   imports: [CommonModule],
   templateUrl: './details.html',
