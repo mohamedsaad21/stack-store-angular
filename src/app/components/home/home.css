@@ -1,0 +1,474 @@
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f8f9fa;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+
+      @media (max-width: 768px) {
+        padding: 0 16px;
+      }
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #8b7355 0%, #6b8e5a 100%);
+      color: white;
+      text-align: center;
+      padding: 120px 0;
+      margin: 40px 20px;
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(139, 115, 85, 0.8) 0%, rgba(107, 142, 90, 0.8) 100%);
+        z-index: 1;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
+
+        @media (max-width: 768px) {
+          font-size: 2.5rem;
+        }
+
+        @media (max-width: 480px) {
+          font-size: 2rem;
+        }
+      }
+
+      p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        opacity: 0.95;
+
+        @media (max-width: 768px) {
+          font-size: 1.1rem;
+        }
+      }
+
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #007bff;
+        color: white;
+        text-decoration: none;
+        padding: 16px 32px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+
+        &:hover {
+          background: #0056b3;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+        }
+
+        @media (max-width: 480px) {
+          padding: 14px 24px;
+          font-size: 1rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        margin: 20px 16px;
+        padding: 80px 0;
+      }
+    }
+
+    /* Featured Categories */
+    .featured-categories {
+      padding: 60px 0;
+
+      h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 3rem;
+        color: #2c3e50;
+
+        @media (max-width: 768px) {
+          font-size: 2rem;
+          margin-bottom: 2rem;
+        }
+      }
+
+      .categories-grid {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+
+        @media (max-width: 768px) {
+          gap: 16px;
+        }
+      }
+
+      .category-card {
+        flex: 1;
+        min-width: 200px;
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        cursor: pointer;
+
+        &:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-image {
+          height: 200px;
+          background-size: cover;
+          background-position: center;
+          position: relative;
+
+          &.electronics {
+            background: linear-gradient(45deg, #1a1a1a 0%, #2d3748 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            i {
+              font-size: 4rem;
+              color: #4fd1c7;
+            }
+          }
+
+          &.sports {
+            background: linear-gradient(45deg, #7cb342 0%, #8bc34a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            i {
+              font-size: 4rem;
+              color: white;
+            }
+          }
+
+          &.furniture {
+            background: linear-gradient(45deg, #e0e0e0 0%, #f5f5f5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            i {
+              font-size: 4rem;
+              color: #666;
+            }
+          }
+
+          &.clothing {
+            background: linear-gradient(45deg, #d4af37 0%, #ffd700 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            i {
+              font-size: 4rem;
+              color: #8b4513;
+            }
+          }
+
+          &.books {
+            background: linear-gradient(45deg, #f5f5dc 0%, #fff8dc 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            i {
+              font-size: 4rem;
+              color: #8b4513;
+            }
+          }
+        }
+
+        .category-content {
+          padding: 20px;
+
+          h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c3e50;
+          }
+
+          p {
+            color: #7f8c8d;
+            font-size: 0.95rem;
+            line-height: 1.5;
+          }
+        }
+
+        @media (max-width: 768px) {
+          min-width: calc(50% - 8px);
+
+          .category-image {
+            height: 160px;
+
+            i {
+              font-size: 3rem;
+            }
+          }
+
+          .category-content {
+            padding: 16px;
+
+            h3 {
+              font-size: 1.2rem;
+            }
+
+            p {
+              font-size: 0.9rem;
+            }
+          }
+        }
+
+        @media (max-width: 480px) {
+          min-width: 100%;
+        }
+      }
+    }
+
+    /* New Arrivals */
+    .new-arrivals {
+      padding: 60px 0;
+      background: white;
+
+      h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 3rem;
+        color: #2c3e50;
+
+        @media (max-width: 768px) {
+          font-size: 2rem;
+          margin-bottom: 2rem;
+        }
+      }
+
+      .products-grid {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+
+        @media (max-width: 768px) {
+          gap: 16px;
+        }
+      }
+
+      .product-card {
+        flex: 1;
+        min-width: 220px;
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        cursor: pointer;
+
+        &:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+          height: 240px;
+          background-size: cover;
+          background-position: center;
+          /* position: relative; */
+
+
+        }
+
+        .product-content {
+          padding: 20px;
+
+          h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c3e50;
+          }
+
+          p {
+            color: #2c3e50;
+            font-size: 1rem;
+            line-height: 1.5;
+          }
+        }
+
+        @media (max-width: 768px) {
+          min-width: calc(50% - 8px);
+
+          .product-image {
+            height: 180px;
+
+            i {
+              font-size: 3rem;
+            }
+          }
+
+          .product-content {
+            padding: 16px;
+
+            h3 {
+              font-size: 1.2rem;
+            }
+
+            p {
+              font-size: 0.9rem;
+            }
+          }
+        }
+
+        @media (max-width: 480px) {
+          min-width: 100%;
+        }
+      }
+    }
+
+    /* Customer Reviews */
+    .customer-reviews {
+      padding: 60px 0;
+      background: #f8f9fa;
+
+      h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 3rem;
+        color: #2c3e50;
+
+        @media (max-width: 768px) {
+          font-size: 2rem;
+          margin-bottom: 2rem;
+        }
+      }
+
+      .reviews-grid {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+
+        @media (max-width: 768px) {
+          gap: 16px;
+        }
+      }
+
+      .review-card {
+        flex: 1;
+        min-width: 300px;
+        background: white;
+        padding: 24px;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .review-header {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 16px;
+
+          .reviewer-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+
+            &.sophia {
+              background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            }
+
+            &.ethan {
+              background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+            }
+
+            &.olivia {
+              background: linear-gradient(45deg, #43e97b 0%, #38f9d7 100%);
+            }
+          }
+
+          .reviewer-info {
+            h4 {
+              font-size: 1.1rem;
+              font-weight: 600;
+              color: #2c3e50;
+              margin-bottom: 4px;
+            }
+
+            .review-date {
+              color: #7f8c8d;
+              font-size: 0.9rem;
+            }
+          }
+        }
+
+        .review-rating {
+          display: flex;
+          gap: 4px;
+          margin-bottom: 16px;
+
+          .star {
+            color: #ffd700;
+            font-size: 1.2rem;
+
+            &.empty {
+              color: #ddd;
+            }
+          }
+        }
+
+        .review-text {
+          color: #555;
+          line-height: 1.6;
+          font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+          min-width: 100%;
+          padding: 20px;
+        }
+      }
+    }

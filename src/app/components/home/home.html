@@ -1,2 +1,156 @@
-<p>Home Works!</p>
-<button (click)="logout()">logout</button>
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Discover the latest trends</h1>
+        <p>Explore our curated collection of products</p>
+        <a [routerLink]="['/Products']" class="cta-button">
+            Shop Now
+            <i class="ri-arrow-right-line"></i>
+        </a>
+    </div>
+</section>
+
+<!-- Featured Categories -->
+<section class="featured-categories">
+    <div class="container">
+        <h2>Featured Categories</h2>
+        <div class="categories-grid">
+            <div class="category-card">
+                <div class="category-image electronics" [routerLink]="['/Products']">
+                    <i class="ri-smartphone-line"></i>
+                </div>
+                <div class="category-content">
+                    <h3>Electronics</h3>
+                    <p>Explore the latest gadgets</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-image sports" [routerLink]="['/Products']">
+                    <i class="ri-basketball-line"></i>
+                </div>
+                <div class="category-content">
+                    <h3>Sports</h3>
+                    <p>Gear up for your next adventure</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-image furniture" [routerLink]="['/Products']">
+                    <i class="ri-sofa-line"></i>
+                </div>
+                <div class="category-content">
+                    <h3>Furniture</h3>
+                    <p>Furnish your home with style</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-image clothing" [routerLink]="['/Products']">
+                    <i class="ri-shirt-line"></i>
+                </div>
+                <div class="category-content">
+                    <h3>Clothing</h3>
+                    <p>Dress to impress</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-image books" [routerLink]="['/Products']">
+                    <i class="ri-book-open-line"></i>
+                </div>
+                <div class="category-content">
+                    <h3>Books</h3>
+                    <p>Dive into a world of knowledge</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- New Arrivals -->
+<section class="new-arrivals">
+    <div class="container">
+        <h2>New Arrivals</h2>
+        <div class="products-grid">
+            @for(product of products; track product.id; let i = $index){
+            @if(3>=i){
+            <div class="product-card" [routerLink]="['/Details',product.id]">
+                <div class="product-image book">
+                    <img class="prdImg"  [src]="product.images[0]" alt="product image" height="100%" width="100%">
+                </div>
+                <div class="product-content">
+                    <h3>{{product.name}}</h3>
+                    <p>{{product.price | currency}}</p>
+                </div>
+            </div>
+            }
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Customer Reviews -->
+<section class="customer-reviews">
+    <div class="container">
+        <h2>Customer Reviews</h2>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-avatar sophia">SC</div>
+                    <div class="reviewer-info">
+                        <h4>Sophia Carter</h4>
+                        <div class="review-date">2 weeks ago</div>
+                    </div>
+                </div>
+                <div class="review-rating">
+                    <i class="ri-star-fill star"></i>
+                    <i class="ri-star-fill star"></i>
+                    <i class="ri-star-fill star"></i>
+                    <i class="ri-star-fill star"></i>
+                    <i class="ri-star-fill star"></i>
+                </div>
+                <div class="review-text">
+                    I love the quality and design of the products. The delivery was fast and the customer service was
+                    excellent.
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-avatar ethan">EB</div>
+                    <div class="reviewer-info">
+                        <h4>Ethan Bennett</h4>
+                        <div class="review-date">1 month ago</div>
+                    </div>
+                </div>
+                <div class="review-rating">
+                    <i class="ri-star-fill star"></i>
+                    <i class="ri-star-fill star"></i>
+                    <i class="ri-star-fill star"></i>
+                    <i class="ri-star-fill star"></i>
+                    <i class="ri-star-line star empty"></i>
+                </div>
+                <div class="review-text">
+                    The product is good, but the delivery took a bit longer than expected. Overall, I'm satisfied with
+                    my
+                    purchase.
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-avatar olivia">OH</div>
+                    <div class="reviewer-info">
+                        <h4>Olivia Hayes</h4>
+                        <div class="review-date">2 months ago</div>
+                    </div>
+                </div>
+                <div class="review-rating">
+                    <i class="ri-star-fill star"></i>
+                    <i class="ri-star-fill star"></i>
+                    <i class="ri-star-fill star"></i>
+                    <i class="ri-star-fill star"></i>
+                    <i class="ri-star-fill star"></i>
+                </div>
+                <div class="review-text">
+                    Amazing products! I highly recommend this store to anyone looking for quality and style.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

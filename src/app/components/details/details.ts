@@ -39,6 +39,9 @@ export class Details implements OnInit {
       });
     }
   }
+
+
+  
 addToCart(product: Iproduct) {
   this._Fetchcart.getCartProducts(7, 1).subscribe({
     next: (res) => {
@@ -94,6 +97,9 @@ addToCart(product: Iproduct) {
   
  
 }
+
+
+
   navigateToUpdate(id:number){
     this._Router.navigateByUrl(`/UpdateProduct/${id}`);
   }
