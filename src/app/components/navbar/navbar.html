@@ -15,9 +15,11 @@
           <li class="nav-items">Cart</li>
         </a>
                 
-        <a routerLink="/AddProduct">
-          <li class="nav-items">Add Product</li>
-        </a>
+        @if(roles.includes('Admin')){
+          <a routerLink="/AddProduct">
+            <li class="nav-items">Add Product</li>
+          </a>
+        }
         @if(!isUserLogged){
           <a routerLink="/Register">
             <li class="nav-items">Register</li>

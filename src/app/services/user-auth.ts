@@ -5,6 +5,8 @@ import { IUserRegister } from '../models/iuser-register';
 import { IUserLogin } from '../models/iuser-login';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { AuthModel } from '../models/auth-model';
+import { Store } from '@ngrx/store';
+import { setRoles } from '../store/role.action';
 
 @Injectable({
   providedIn: 'root'
@@ -14,18 +16,19 @@ export class UserAuth {
   private readonly JWT_TOKEN = 'JWT_TOKEN';
   private loggedUser?:string;
   private authSubject:BehaviorSubject<boolean>;
-  constructor(private _httpClient:HttpClient){
+  constructor(private _httpClient:HttpClient, private store:Store){
     this.authSubject = new BehaviorSubject<boolean>(this.getUserLogged());
   }
 
   register(user:IUserRegister):Observable<AuthModel>{
     return this._httpClient.post<AuthModel>(`${environment.baseUrl}/api/Auth/register`, user)
-    .pipe(tap((response:AuthModel) => {this.doLoginUser(user.email, response.token)}));
+    .pipe(tap((response:AuthModel) => {this.doLoginUser(user.email, response.token, response.roles);
+    }));
   }
 
   login(user:IUserLogin):Observable<AuthModel>{
     return this._httpClient.post<AuthModel>(`${environment.baseUrl}/api/Auth/login`, user)
-    .pipe(tap((response:AuthModel) => {this.doLoginUser(user.email, response.token)}));
+    .pipe(tap((response:AuthModel) => {this.doLoginUser(user.email, response.token, response.roles)}));
   }
 
   getUserLogged():boolean{
@@ -34,10 +37,14 @@ export class UserAuth {
 
   
 
-    private doLoginUser(email:string, token:any){
+    private doLoginUser(email:string, token:any, roles:string[]){
       this.loggedUser = email;
       this.storeJwtToken(token);
       this.authSubject.next(true);
+      this.store.dispatch(setRoles({ roles: roles }));
+
+      
+
     }
     private storeJwtToken(jwt:string){
       localStorage.setItem(this.JWT_TOKEN, jwt);
