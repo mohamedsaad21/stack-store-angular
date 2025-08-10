@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ApiResponse } from '../models/api-response';
-import { Iproduct } from '../models/iproduct';
 import { Cartitem } from '../models/cartitem';
 
 @Injectable({

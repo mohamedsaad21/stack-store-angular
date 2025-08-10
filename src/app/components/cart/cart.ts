@@ -100,28 +100,3 @@ export class Cart implements OnInit {
     return total;
   }
 
-  // increase(cartItemId: number) {
-  //   this._Fetchcart.increaseQuantity(cartItemId).subscribe({
-  //     next: (res) => {
-  //       const item = this.cartItems.find(i => i.id === cartItemId);
-  //       if (item) {
-  //         item.quantity++;
-  //       }
-  //     },
-  //     error: (err) => console.error(err)
-  //   });
-  // }
-
-  // decrease(cartItemId: number) {
-  //   this._Fetchcart.decreaseQuantity(cartItemId).subscribe({
-  //     next: (res) => {
-  //       const item = this.cartItems.find(i => i.id === cartItemId);
-  //       if (item && item.quantity > 1) {
-  //         item.quantity--;
-  //       }
-  //     },
-  //     error: (err) => console.error(err)
-  //   });
-  // }
-
-}   
